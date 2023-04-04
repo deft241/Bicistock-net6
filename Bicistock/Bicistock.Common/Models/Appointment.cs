@@ -2,7 +2,7 @@
 
 namespace Bicistock.Common.Models
 {
-    public class CS_Cita
+    public class Appointment
     {
         public int Id { get; set; }
         public DateTime DateCitation { get; set; }
@@ -15,12 +15,12 @@ namespace Bicistock.Common.Models
         public string Description { get; set; }
 
 
-        public CS_Cita()
+        public Appointment()
         {
 
         }
 
-        public CS_Cita(DataRow fila)
+        public Appointment(DataRow fila)
         {
             Id = fila.Field<int>(0);
             DateCitation = fila.Field<DateTime>(1);

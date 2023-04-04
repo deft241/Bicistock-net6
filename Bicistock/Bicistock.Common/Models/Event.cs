@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Bicistock.Common.Models
 {
-    public class CS_Evento
+    public class Event
     {
         public int Id { get; set; }
         public string EventDescription { get; set; }
@@ -11,12 +11,12 @@ namespace Bicistock.Common.Models
         public IFormFile Event_Image_upload { get; set; }
         public string BrandName { get; set; }
 
-        public CS_Evento()
+        public Event()
         {
 
         }
 
-        public CS_Evento(DataRow fila)
+        public Event(DataRow fila)
         {
             Id = fila.Field<int>(0);
             EventDescription = fila.Field<string>(1);

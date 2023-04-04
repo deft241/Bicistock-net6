@@ -1,4 +1,4 @@
-﻿@model Bicistock.Common.Models.CS_ModeloGeneral;
+﻿@model Bicistock.Common.Models.InventoryManager;
 @using Microsoft.AspNetCore.Http;
 @{
     Layout = "../Shared/_LayoutAdmin.cshtml";
@@ -20,13 +20,6 @@
 
                 @Html.TextBoxFor(n => n.BikeEntity.Name, new { @class = "form-control", @placeholder = "Nombre Bici" })
             </div>
-            <br />
-            <div class="wthree-field">
-
-                @Html.TextBoxFor(n => n.BikeEntity.Price, new { @class = "form-control", @placeholder = "Precio" })
-
-            </div>
-
             <br />
             <center>
                 @Html.DropDownListFor(x => x.Brand.Id, new SelectList(Model.BrandList, "Id", "Name"), "--SELECCIONA MARCA--")

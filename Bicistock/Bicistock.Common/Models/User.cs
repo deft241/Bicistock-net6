@@ -2,7 +2,7 @@
 
 namespace Bicistock.Common.Models
 {
-    public class CS_Usuario
+    public class User
     {
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -15,12 +15,12 @@ namespace Bicistock.Common.Models
         public byte Role { get; set; }
 
 
-        public CS_Usuario()
+        public User()
         {
 
         }
 
-        public CS_Usuario(DataRow fila)
+        public User(DataRow fila)
         {
             UserName = fila.Field<string>(0);
             Password = fila.Field<string>(1);

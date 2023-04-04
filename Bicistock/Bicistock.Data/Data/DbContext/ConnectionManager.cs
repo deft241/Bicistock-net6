@@ -2,9 +2,9 @@
 using System.Data;
 using Microsoft.Extensions.Configuration;
 
-namespace Bicistock.Data.Data
+namespace Bicistock.Data.Data.DbContext
 {
-    public class CD_Conexion
+    public class ConnectionManager
     {
         private SqlConnection CD_conexion;
         private bool isconected = false;

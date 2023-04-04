@@ -1,4 +1,4 @@
-﻿@model Bicistock.Common.Models.CS_ModeloGeneral;
+﻿@model Bicistock.Common.Models.InventoryManager;
 @using Microsoft.AspNetCore.Http;
 
 @{
@@ -55,11 +55,6 @@
                         <td class="td-item">
                             <p class="item">
                                 @Html.DisplayFor(modelItem => item.BrandName)
-                            </p>
-                        </td>
-                        <td class="td-item">
-                            <p class="item">
-                                @Html.DisplayFor(modelItem => item.Price) €
                             </p>
                         </td>
                     </tr>

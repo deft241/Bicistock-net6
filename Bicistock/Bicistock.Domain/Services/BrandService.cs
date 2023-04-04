@@ -1,24 +1,25 @@
 ﻿using Bicistock.Common.Models;
 using Bicistock.Data.Data;
+using Bicistock.Data.Data.Repositories;
 using System.Data;
 
-namespace Bicistock.Domain
+namespace Bicistock.Domain.Services
 {
-    public class CN_Marca
+    public class BrandService
     {
-        public List<CS_Marca> MostrarMarcas()
+        public List<Brand> MostrarMarcas()
         {
-            CD_Marca accesoBD = new CD_Marca();
+            BrandRepository accesoBD = new BrandRepository();
 
             DataTable tabla = new DataTable();
 
-            List<CS_Marca> listMarca = new List<CS_Marca>();
+            List<Brand> listMarca = new List<Brand>();
 
             tabla = accesoBD.Marcas();
 
             foreach (DataRow item in tabla.Rows)
             {
-                listMarca.Add(new CS_Marca(item));
+                listMarca.Add(new Brand(item));
             }
 
             return listMarca;

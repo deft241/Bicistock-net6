@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Bicistock.Common.Models
 {
-    public class CS_Componente
+    public class Component
     {
         public int id { get; set; }
         public string Name { get; set; }
@@ -11,12 +11,12 @@ namespace Bicistock.Common.Models
         public string Component_Image { get; set; }
         public IFormFile Component_Image_Upload { get; set; }
 
-        public CS_Componente()
+        public Component()
         {
 
         }
 
-        public CS_Componente(DataRow fila)
+        public Component(DataRow fila)
         {
             id = fila.Field<int>(0);
             Name = fila.Field<string>(1);

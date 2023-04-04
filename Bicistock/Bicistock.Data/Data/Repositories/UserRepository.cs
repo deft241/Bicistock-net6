@@ -1,12 +1,13 @@
-﻿using Capa_Soporte.Helpers;
+﻿using Bicistock.Data.Data.DbContext;
+using Capa_Soporte.Helpers;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Bicistock.Data.Data
+namespace Bicistock.Data.Data.Repositories
 {
-    public class CD_Usuarios
+    public class UserRepository
     {
-        private CD_Conexion conexion = new CD_Conexion();
+        private ConnectionManager conexion = new ConnectionManager();
         SqlDataReader leer;
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();

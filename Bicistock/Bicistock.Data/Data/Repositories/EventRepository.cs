@@ -1,21 +1,22 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using Bicistock.Data.Data.DbContext;
 
-namespace Bicistock.Data.Data
+namespace Bicistock.Data.Data.Repositories
 {
-    public class CD_Componente
+    public class EventRepository
     {
-        private CD_Conexion conexion = new CD_Conexion();
+        private ConnectionManager conexion = new ConnectionManager();
         SqlDataReader leer;
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
 
 
-        public DataTable MostrarComponentes()
+        public DataTable MostrarEvento()
         {
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "MostrarComponentes";
+            comando.CommandText = "MostrarEventos";
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla.Load(leer);
@@ -24,19 +25,17 @@ namespace Bicistock.Data.Data
 
         }
 
-        public void InsertarComponente(string nombreComponente, int idComponente, string rutaImagen)
+        public void InsertarEvento(string descipcion, string imagen, int Brand)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "CrearComponente";
+            comando.CommandText = "InsertarEventos";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@nombreComponente", nombreComponente);
-            comando.Parameters.AddWithValue("@idmarca", idComponente);
-            comando.Parameters.AddWithValue("@rutaImagen", rutaImagen);
+            comando.Parameters.AddWithValue("@Description", descipcion);
+            comando.Parameters.AddWithValue("@imagen", imagen);
+            comando.Parameters.AddWithValue("@Brand", Brand);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }
-
-
     }
 }

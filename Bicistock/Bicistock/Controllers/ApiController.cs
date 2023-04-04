@@ -1,4 +1,4 @@
-﻿using Bicistock.Domain;
+﻿using Bicistock.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -11,7 +11,7 @@ namespace Bicistock.Controllers
         {
             Logger.Logger logger = new Logger.Logger();
 
-            CN_Cita conexionCita = new CN_Cita();
+            AppointmentService conexionCita = new AppointmentService();
 
             return JsonSerializer.Serialize(conexionCita.MostrarCitas());
         }

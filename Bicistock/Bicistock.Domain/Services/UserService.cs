@@ -1,18 +1,18 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Data.Data;
+using Bicistock.Data.Data.Repositories;
 using Capa_Soporte.Helpers;
 using System.Data;
 
-namespace Bicistock.Domain
+namespace Bicistock.Domain.Services
 {
-    public class CN_Usuario
+    public class UserService
     {
-        public CS_Usuario MostrarUsuario(string UserName)
+        public User MostrarUsuario(string UserName)
         {
             Logger.Logger logger = new Logger.Logger();
-            CD_Usuarios accesoBD = new CD_Usuarios();
+            UserRepository accesoBD = new UserRepository();
 
-            CS_Usuario UserEntity;
+            User UserEntity;
 
             DataTable datos = new DataTable();
 
@@ -21,28 +21,28 @@ namespace Bicistock.Domain
 
             if (datos.Rows.Count == 0)
             {
-                UserEntity = new CS_Usuario();
+                UserEntity = new User();
                 UserEntity.UserName = null;
                 return UserEntity;
             }
             else
             {
-                UserEntity = new CS_Usuario(datos.Rows[0]);
+                UserEntity = new User(datos.Rows[0]);
                 return UserEntity;
             }
 
         }
 
-        public List<CS_Usuario> MostrarUsuarios()
+        public List<User> MostrarUsuarios()
         {
-            CD_Usuarios accesoBD = new CD_Usuarios();
-            List<CS_Usuario> UserList = new List<CS_Usuario>();
+            UserRepository accesoBD = new UserRepository();
+            List<User> UserList = new List<User>();
             DataTable datos = new DataTable();
 
             datos = accesoBD.MostrarTodos();
             foreach (DataRow item in datos.Rows)
             {
-                UserList.Add(new CS_Usuario(item));
+                UserList.Add(new User(item));
             }
             return UserList;
         }
@@ -50,7 +50,7 @@ namespace Bicistock.Domain
         public void CrearUsuario(string username, string password, string Dni, string name, string surnames, int age,
             string phone, string verified, byte idPermission)
         {
-            CD_Usuarios accesoBD = new CD_Usuarios();
+            UserRepository accesoBD = new UserRepository();
 
 
             accesoBD.Insertar(username, password, Dni, name, surnames, age, phone, verified, idPermission);
@@ -59,14 +59,14 @@ namespace Bicistock.Domain
 
         public void ActivateUser(string username)
         {
-            CD_Usuarios accesoBD = new CD_Usuarios();
+            UserRepository accesoBD = new UserRepository();
 
             accesoBD.ActivateUser(username);
         }
 
         public bool IsVerified(string username)
         {
-            CD_Usuarios accesoBD = new CD_Usuarios();
+            UserRepository accesoBD = new UserRepository();
 
             if (string.IsNullOrEmpty(username))
             {
@@ -92,7 +92,7 @@ namespace Bicistock.Domain
             else
             {
                 //Create new user entity
-                CS_Usuario userEntity = MostrarUsuario(username);
+                User userEntity = MostrarUsuario(username);
 
                 //Decrypt Password
                 if (userEntity.Password == Encrypt.GetSHA256(password))

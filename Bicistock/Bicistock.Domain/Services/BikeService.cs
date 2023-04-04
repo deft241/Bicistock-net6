@@ -1,48 +1,47 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Data.Data;
+using Bicistock.Data.Data.Repositories;
 using System.Data;
 
-namespace Bicistock.Domain
+namespace Bicistock.Domain.Services
 {
-    public class CN_Bici
+    public class BikeService
     {
-        public List<CS_Bici> MostrarTodo()
+        public List<Bike> MostrarTodo()
         {
             CD_Bici accesoBD = new CD_Bici();
             DataTable tabla = new DataTable();
-            List<CS_Bici> listaBicis = new List<CS_Bici>();
+            List<Bike> listaBicis = new List<Bike>();
 
             tabla = accesoBD.Mostrar();
 
             foreach (DataRow item in tabla.Rows)
             {
-                listaBicis.Add(new CS_Bici(item));
+                listaBicis.Add(new Bike(item));
             }
 
             return listaBicis;
         }
 
-        public void MeterBici(string name, decimal precio, int id_brand, string Image)
+        public void MeterBici(string name, int id_brand, string Image)
         {
             CD_Bici accesoBD = new CD_Bici();
 
-            accesoBD.MeterBici(name, precio, id_brand, Image);
+            accesoBD.MeterBici(name, id_brand, Image);
         }
 
-        public List<CS_Bici> BiciMarca()
+        public List<Bike> BiciMarca()
         {
             CD_Bici accesoBD = new CD_Bici();
             DataTable tabla = new DataTable();
-            List<CS_Bici> listaBicis = new List<CS_Bici>();
+            List<Bike> listaBicis = new List<Bike>();
 
             tabla = accesoBD.BiciMarca();
 
             foreach (DataRow item in tabla.Rows)
             {
-                CS_Bici bici = new CS_Bici();
+                Bike bici = new Bike();
                 bici.Name = item.Field<string>(0);
-                bici.Price = item.Field<decimal>(1);
-                bici.BrandName = item.Field<string>(2);
+                bici.BrandName = item.Field<string>(1);
                 listaBicis.Add(bici);
             }
 

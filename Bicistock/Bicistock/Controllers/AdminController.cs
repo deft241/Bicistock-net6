@@ -2,6 +2,7 @@
 using System.Data;
 using Bicistock.Common.Models;
 using Bicistock.Domain;
+using Bicistock.Domain.Services;
 
 namespace Bicistock.Controllers
 {
@@ -23,9 +24,9 @@ namespace Bicistock.Controllers
 
             if (HttpContext.Session.GetInt32("Role") == 2)
             {
-                CN_Usuario UserEntity = new CN_Usuario();
-                CS_ModeloGeneral modeloGeneral = new CS_ModeloGeneral();
-                CS_ModeloAdminPanel objAdminPanel = new CS_ModeloAdminPanel();
+                UserService UserEntity = new UserService();
+                InventoryManager modeloGeneral = new InventoryManager();
+                AdminPanelData objAdminPanel = new AdminPanelData();
                 objAdminPanel.UserList = UserEntity.MostrarUsuarios();
 
                 return View(objAdminPanel);
@@ -37,10 +38,10 @@ namespace Bicistock.Controllers
 
         public IActionResult Citas()
         {
-            CN_Cita conexionCita = new CN_Cita();
-            CS_ModeloCita objModeloCita = new CS_ModeloCita();
-            CN_Marca conexionMarca = new CN_Marca();
-            List<CS_Marca> marcas = new List<CS_Marca>();
+            AppointmentService conexionCita = new AppointmentService();
+            AppointmentManager objModeloCita = new AppointmentManager();
+            BrandService conexionMarca = new BrandService();
+            List<Brand> marcas = new List<Brand>();
 
             objModeloCita.CitationList = conexionCita.MostrarCitas();
 
@@ -49,8 +50,8 @@ namespace Bicistock.Controllers
 
         public IActionResult BorrarCita(int idCita)
         {
-            CN_Cita conexionCita = new CN_Cita();
-            CS_Cita objCita = new CS_Cita();
+            AppointmentService conexionCita = new AppointmentService();
+            Appointment objCita = new Appointment();
 
             conexionCita.Eliminar(idCita);
 
@@ -62,9 +63,9 @@ namespace Bicistock.Controllers
 
         public IActionResult AñadirComponente()
         {
-            CN_Marca conexionMarca = new CN_Marca();
-            CS_Marca Brand = new CS_Marca();
-            CS_ModeloAdminPanel objModeloAdminPanel = new CS_ModeloAdminPanel();
+            BrandService conexionMarca = new BrandService();
+            Brand Brand = new Brand();
+            AdminPanelData objModeloAdminPanel = new AdminPanelData();
 
             objModeloAdminPanel.BrandList = conexionMarca.MostrarMarcas();
 
@@ -74,10 +75,10 @@ namespace Bicistock.Controllers
 
 
         [HttpPost]
-        public IActionResult AñadirComponente(CS_ModeloAdminPanel nuevoComponente)
+        public IActionResult AñadirComponente(AdminPanelData nuevoComponente)
         {
             Logger.Logger logger = new Logger.Logger();
-            CN_Componente conexionComponente = new CN_Componente();
+            ComponentService conexionComponente = new ComponentService();
             string Name = nuevoComponente.Component.Name;
             string componenteImagen;
 
@@ -116,9 +117,9 @@ namespace Bicistock.Controllers
 
         public ActionResult AdminBikes()
         {
-            CN_Marca conexionMarca = new CN_Marca();
-            CS_Marca Brand = new CS_Marca();
-            CS_ModeloGeneral objModelogeneral = new CS_ModeloGeneral();
+            BrandService conexionMarca = new BrandService();
+            Brand Brand = new Brand();
+            InventoryManager objModelogeneral = new InventoryManager();
 
             objModelogeneral.BrandList = conexionMarca.MostrarMarcas();
 
@@ -130,13 +131,12 @@ namespace Bicistock.Controllers
         }
 
         [HttpPost]
-        public ActionResult AdminBikes(CS_ModeloGeneral nuevaBici)
+        public ActionResult AdminBikes(InventoryManager nuevaBici)
         {
             Logger.Logger logger = new Logger.Logger();
-            CN_Bici conexionBici = new CN_Bici();
+            BikeService conexionBici = new BikeService();
             string Name = nuevaBici.BikeEntity.Name;
             string Image;
-            decimal precio = nuevaBici.BikeEntity.Price;
             int BrandId = nuevaBici.Brand.Id;
 
             //Meter foto carpeta imagenes
@@ -163,7 +163,7 @@ namespace Bicistock.Controllers
                 Image = "/Images/" + fileName;
                 ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
 
-                conexionBici.MeterBici(Name, precio, BrandId, Image);
+                conexionBici.MeterBici(Name, BrandId, Image);
                 logger.Info("Se ha creado la bicicleta " + Name);
                 return RedirectToAction("AdminBikes");
             }
@@ -178,9 +178,9 @@ namespace Bicistock.Controllers
         {
 
 
-            CN_Marca conexionMarca = new CN_Marca();
-            CS_Marca Brand = new CS_Marca();
-            CS_ModeloAdminPanel objModeloAdmin = new CS_ModeloAdminPanel();
+            BrandService conexionMarca = new BrandService();
+            Brand Brand = new Brand();
+            AdminPanelData objModeloAdmin = new AdminPanelData();
 
             objModeloAdmin.BrandList = conexionMarca.MostrarMarcas();
 
@@ -190,10 +190,10 @@ namespace Bicistock.Controllers
 
 
         [HttpPost]
-        public IActionResult AñadirEvento(CS_ModeloAdminPanel nuevoEvento)
+        public IActionResult AñadirEvento(AdminPanelData nuevoEvento)
         {
             Logger.Logger logger = new Logger.Logger();
-            CN_Evento conexionEvento = new CN_Evento();
+            EventService conexionEvento = new EventService();
             string desc = nuevoEvento.Event.EventDescription;
             string eventoImagen;
 
@@ -233,10 +233,10 @@ namespace Bicistock.Controllers
         public IActionResult Productos()
         {
 
-            CN_Bici conexionBici = new CN_Bici();
-            CN_Componente conexionComponente = new CN_Componente();
+            BikeService conexionBici = new BikeService();
+            ComponentService conexionComponente = new ComponentService();
 
-            CS_ModeloGeneral objModeloGeneral = new CS_ModeloGeneral();
+            InventoryManager objModeloGeneral = new InventoryManager();
 
             objModeloGeneral.BikeList = conexionBici.BiciMarca();
             objModeloGeneral.ComponentList = conexionComponente.MostrarComponente();
@@ -247,8 +247,8 @@ namespace Bicistock.Controllers
 
         public IActionResult Eventos()
         {
-            CN_Evento conexionCita = new CN_Evento();
-            CS_ModeloGeneral objModeloGeneral = new CS_ModeloGeneral();
+            EventService conexionCita = new EventService();
+            InventoryManager objModeloGeneral = new InventoryManager();
 
             objModeloGeneral.EventList = conexionCita.MostrarEventos();
 

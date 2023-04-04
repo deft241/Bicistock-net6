@@ -1,5 +1,5 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Domain;
+using Bicistock.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bicistock.Controllers
@@ -13,12 +13,12 @@ namespace Bicistock.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(CS_Usuario intento)
+        public IActionResult Index(User intento)
         {
             Logger.Logger logger = new Logger.Logger();
 
-            CN_Usuario conexionUsuario = new CN_Usuario();
-            CS_Usuario resultadoReal = conexionUsuario.MostrarUsuario(intento.UserName);
+            UserService conexionUsuario = new UserService();
+            User resultadoReal = conexionUsuario.MostrarUsuario(intento.UserName);
 
             if (resultadoReal.UserName is null)
             {
@@ -67,12 +67,12 @@ namespace Bicistock.Controllers
         }
 
         [HttpPost]
-        public IActionResult Empleado(CS_Usuario intento)
+        public IActionResult Empleado(User intento)
         {
             Logger.Logger logger = new Logger.Logger();
 
-            CN_Usuario conexionUsuario = new CN_Usuario();
-            CS_Usuario resultadoReal = conexionUsuario.MostrarUsuario(intento.UserName);
+            UserService conexionUsuario = new UserService();
+            User resultadoReal = conexionUsuario.MostrarUsuario(intento.UserName);
 
             if (resultadoReal.UserName is null)
             {
@@ -113,12 +113,12 @@ namespace Bicistock.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registro(CS_Usuario UserEntity)
+        public IActionResult Registro(User UserEntity)
         {
             Logger.Logger logger = new Logger.Logger();
 
-            CN_Usuario conexionUsuario = new CN_Usuario();
-            CS_Usuario existeUsu = conexionUsuario.MostrarUsuario(UserEntity.UserName);
+            UserService conexionUsuario = new UserService();
+            User existeUsu = conexionUsuario.MostrarUsuario(UserEntity.UserName);
 
             if (string.IsNullOrEmpty(existeUsu.UserName))
             {

@@ -1,29 +1,29 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Data.Data;
+using Bicistock.Data.Data.Repositories;
 using System.Data;
 
-namespace Bicistock.Domain
+namespace Bicistock.Domain.Services
 {
-    public class CN_Componente
+    public class ComponentService
     {
 
-        public List<CS_Componente> MostrarComponente()
+        public List<Component> MostrarComponente()
         {
-            CD_Componente accesoBD = new CD_Componente();
-            List<CS_Componente> CitationList = new List<CS_Componente>();
+            ComponentRepository accesoBD = new ComponentRepository();
+            List<Component> CitationList = new List<Component>();
             DataTable datos = new DataTable();
 
             datos = accesoBD.MostrarComponentes();
             foreach (DataRow item in datos.Rows)
             {
-                CitationList.Add(new CS_Componente(item));
+                CitationList.Add(new Component(item));
             }
             return CitationList;
         }
 
         public void InsertarComponente(string nombreComponente, int idComponente, string rutaImagen)
         {
-            CD_Componente accesoBD = new CD_Componente();
+            ComponentRepository accesoBD = new ComponentRepository();
 
 
             accesoBD.InsertarComponente(nombreComponente, idComponente, rutaImagen);

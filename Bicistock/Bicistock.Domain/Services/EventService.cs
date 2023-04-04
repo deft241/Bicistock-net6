@@ -1,28 +1,29 @@
 ﻿using Bicistock.Common.Models;
 using Bicistock.Data.Data;
+using Bicistock.Data.Data.Repositories;
 using System.Data;
 
-namespace Bicistock.Domain
+namespace Bicistock.Domain.Services
 {
-    public class CN_Evento
+    public class EventService
     {
-        public List<CS_Evento> MostrarEventos()
+        public List<Event> MostrarEventos()
         {
-            CD_Evento accesoBD = new CD_Evento();
-            List<CS_Evento> CitationList = new List<CS_Evento>();
+            EventRepository accesoBD = new EventRepository();
+            List<Event> CitationList = new List<Event>();
             DataTable datos = new DataTable();
 
             datos = accesoBD.MostrarEvento();
             foreach (DataRow item in datos.Rows)
             {
-                CitationList.Add(new CS_Evento(item));
+                CitationList.Add(new Event(item));
             }
             return CitationList;
         }
 
         public void InsertarEvento(string descipcion, string imagen, int Brand)
         {
-            CD_Evento accesoBD = new CD_Evento();
+            EventRepository accesoBD = new EventRepository();
 
             accesoBD.InsertarEvento(descipcion, imagen, Brand);
         }

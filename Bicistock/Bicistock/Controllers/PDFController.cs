@@ -1,5 +1,5 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Domain;
+using Bicistock.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Rotativa.AspNetCore;
 
@@ -18,9 +18,9 @@ namespace Bicistock.Controllers
         {
             Logger.Logger logger = new Logger.Logger();
 
-            CN_Usuario UserEntity = new CN_Usuario();
-            CS_ModeloGeneral modeloGeneral = new CS_ModeloGeneral();
-            CS_ModeloAdminPanel objAdminPanel = new CS_ModeloAdminPanel();
+            UserService UserEntity = new UserService();
+            InventoryManager modeloGeneral = new InventoryManager();
+            AdminPanelData objAdminPanel = new AdminPanelData();
             objAdminPanel.UserList = UserEntity.MostrarUsuarios();
 
 
@@ -34,10 +34,10 @@ namespace Bicistock.Controllers
         {
             Logger.Logger logger = new Logger.Logger();
 
-            CN_Cita conexionCita = new CN_Cita();
-            CS_ModeloCita objModeloCita = new CS_ModeloCita();
-            CN_Marca conexionMarca = new CN_Marca();
-            List<CS_Marca> marcas = new List<CS_Marca>();
+            AppointmentService conexionCita = new AppointmentService();
+            AppointmentManager objModeloCita = new AppointmentManager();
+            BrandService conexionMarca = new BrandService();
+            List<Brand> marcas = new List<Brand>();
 
             objModeloCita.CitationList = conexionCita.MostrarCitas();
 
@@ -52,10 +52,10 @@ namespace Bicistock.Controllers
         {
             Logger.Logger logger = new Logger.Logger();
 
-            CN_Bici conexionBici = new CN_Bici();
-            CN_Componente conexionComponente = new CN_Componente();
+            BikeService conexionBici = new BikeService();
+            ComponentService conexionComponente = new ComponentService();
 
-            CS_ModeloGeneral objModeloGeneral = new CS_ModeloGeneral();
+            InventoryManager objModeloGeneral = new InventoryManager();
 
             objModeloGeneral.BikeList = conexionBici.BiciMarca();
             objModeloGeneral.ComponentList = conexionComponente.MostrarComponente();

@@ -1,11 +1,12 @@
-﻿using System.Data;
+﻿using Bicistock.Data.Data.DbContext;
+using System.Data;
 using System.Data.SqlClient;
 
-namespace Bicistock.Data.Data
+namespace Bicistock.Data.Data.Repositories
 {
     public class CD_Bici
     {
-        CD_Conexion conexion = new CD_Conexion();
+        ConnectionManager conexion = new ConnectionManager();
         SqlDataReader leer;
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
@@ -21,13 +22,12 @@ namespace Bicistock.Data.Data
             return tabla;
         }
 
-        public void MeterBici(string name, decimal precio, int id_brand, string Image)
+        public void MeterBici(string name, int id_brand, string Image)
         {
             comando.Connection = conexion.AbrirConexion();
             comando.CommandText = "meterbicis";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@name", name);
-            comando.Parameters.AddWithValue("@precio", precio);
             comando.Parameters.AddWithValue("@brand", id_brand);
             comando.Parameters.AddWithValue("@Image", Image);
             comando.ExecuteNonQuery();

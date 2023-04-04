@@ -1,13 +1,13 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Domain;
+using Bicistock.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bicistock.Controllers
 {
     public class ProfileController : Controller
     {
-        CN_Usuario userData = new CN_Usuario();
-        CS_Usuario userEntity = new CS_Usuario();
+        UserService userData = new UserService();
+        User userEntity = new User();
 
         public IActionResult Index()
         {
@@ -18,7 +18,7 @@ namespace Bicistock.Controllers
         }
 
         [HttpPost]
-        public string Index(CS_Usuario newUser)
+        public string Index(User newUser)
         {
 
             return "FUNCIONA";

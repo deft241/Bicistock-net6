@@ -1,5 +1,5 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Domain;
+using Bicistock.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bicistock.Controllers
@@ -7,7 +7,7 @@ namespace Bicistock.Controllers
 
     public class CitaController : Controller
     {
-        CN_Usuario userData = new CN_Usuario();
+        UserService userData = new UserService();
 
         public IActionResult Pedir()
         {
@@ -17,10 +17,10 @@ namespace Bicistock.Controllers
             //{
             //    return RedirectToAction("Index","Home");
             //}
-
-            CN_Marca conexionMarca = new CN_Marca();
-            CS_Marca Brand = new CS_Marca();
-            CS_ModeloCita objModeloCita = new CS_ModeloCita();
+            Bicistock.Domain.Services.
+            BrandService conexionMarca = new BrandService();
+            Brand Brand = new Brand();
+            AppointmentManager objModeloCita = new AppointmentManager();
 
             objModeloCita.BrandList = conexionMarca.MostrarMarcas();
             return View(objModeloCita);
@@ -28,7 +28,7 @@ namespace Bicistock.Controllers
         }
 
         [HttpPost]
-        public IActionResult Pedir(CS_ModeloCita cita)
+        public IActionResult Pedir(AppointmentManager cita)
         {
             string user = HttpContext.Session.GetString("usuarioActivo");
 
@@ -39,12 +39,12 @@ namespace Bicistock.Controllers
             Logger.Logger logger = new Logger.Logger();
             DateTime actual = new DateTime();
             actual = DateTime.Now;
-            CN_Marca conexionMarca = new CN_Marca();
-            CN_Cita conexionCita = new CN_Cita();
-            CN_Usuario conexionUsuario = new CN_Usuario();
-            CS_Usuario respuestaUsuario = new CS_Usuario();
+            BrandService conexionMarca = new BrandService();
+            AppointmentService conexionCita = new AppointmentService();
+            UserService conexionUsuario = new UserService();
+            User respuestaUsuario = new User();
 
-            CS_ModeloCita objModeloCita = new CS_ModeloCita();
+            AppointmentManager objModeloCita = new AppointmentManager();
 
 
 

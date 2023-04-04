@@ -1,11 +1,12 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using Bicistock.Data.Data.DbContext;
 
-namespace Bicistock.Data.Data
+namespace Bicistock.Data.Data.Repositories
 {
-    public class CD_Cita
+    public class AppointmentRepository
     {
-        private CD_Conexion conexion = new CD_Conexion();
+        private ConnectionManager conexion = new ConnectionManager();
         SqlDataReader leer;
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();

@@ -1,7 +1,6 @@
 ﻿using Bicistock.Common.Models;
-using Bicistock.Domain;
+using Bicistock.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Mail;
 
 namespace Bicistock.Controllers
 {
@@ -9,15 +8,15 @@ namespace Bicistock.Controllers
     {
         public IActionResult Index()
         {
-            CN_Marca conexionMarca = new CN_Marca();
-            CS_Marca Brand = new CS_Marca();
+            BrandService conexionMarca = new BrandService();
+            Brand Brand = new Brand();
 
 
 
 
-            CS_ModeloGeneral modeloGeneral = new CS_ModeloGeneral();
-            List<CS_Bici> listabicis = new List<CS_Bici>();
-            CN_Bici conexionBici = new CN_Bici();
+            InventoryManager modeloGeneral = new InventoryManager();
+            List<Bike> listabicis = new List<Bike>();
+            BikeService conexionBici = new BikeService();
             string placeholder = "/Images/placeholder.jpg";
 
             modeloGeneral.BikeList = conexionBici.MostrarTodo();
@@ -37,16 +36,16 @@ namespace Bicistock.Controllers
 
 
         [HttpPost]
-        public IActionResult Index(CS_ModeloGeneral filtrar)
+        public IActionResult Index(InventoryManager filtrar)
         {
-            CN_Marca conexionMarca = new CN_Marca();
-            CS_Marca Brand = new CS_Marca();
+            BrandService conexionMarca = new BrandService();
+            Brand Brand = new Brand();
 
-            CS_ModeloGeneral modeloGeneral = new CS_ModeloGeneral();
-            List<CS_Bici> listabicis = new List<CS_Bici>();
-            CN_Bici conexionBici = new CN_Bici();
+            InventoryManager modeloGeneral = new InventoryManager();
+            List<Bike> listabicis = new List<Bike>();
+            BikeService conexionBici = new BikeService();
             string placeholder = "/Images/placeholder.jpg";
-            modeloGeneral.Brand = new CS_Marca();
+            modeloGeneral.Brand = new Brand();
 
             modeloGeneral.BikeList = conexionBici.MostrarTodo();
 
@@ -83,9 +82,9 @@ namespace Bicistock.Controllers
 
         public IActionResult ListComponentes()
         {
-            CS_ModeloGeneral modeloGeneral = new CS_ModeloGeneral();
-            CN_Componente conexionComponente = new CN_Componente();
-            CN_Marca conexionMarca = new CN_Marca();
+            InventoryManager modeloGeneral = new InventoryManager();
+            ComponentService conexionComponente = new ComponentService();
+            BrandService conexionMarca = new BrandService();
             string placeholder = "/Images/placeholder.jpg";
 
             modeloGeneral.ComponentList = conexionComponente.MostrarComponente();
@@ -103,8 +102,8 @@ namespace Bicistock.Controllers
 
         public IActionResult ListEventos()
         {
-            CS_ModeloGeneral modeloGeneral = new CS_ModeloGeneral();
-            CN_Evento conexionEvento = new CN_Evento();
+            InventoryManager modeloGeneral = new InventoryManager();
+            EventService conexionEvento = new EventService();
             string placeholder = "/Images/placeholder.jpg";
 
             modeloGeneral.EventList = conexionEvento.MostrarEventos();
