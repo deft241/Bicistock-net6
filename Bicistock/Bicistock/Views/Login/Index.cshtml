@@ -1,0 +1,51 @@
+﻿@model Bicistock.Common.Models.CS_Usuario;
+@using Microsoft.AspNetCore.Http;
+@{ 
+    int errorLogin = Convert.ToInt32(Context.Session.GetInt32("errorLogin"));
+    ViewData["Title"] = "Login Cliente";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Custom styles for this template -->
+    <link href="/css/signin.css" rel="stylesheet">
+</head>
+<body class="text-center">
+
+    <main class="form-signin">
+        @if (errorLogin == 1)
+        {
+
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <div>
+                    Usuario o Contraseña incorrectos
+                </div>
+            </div>
+        }
+    <form method="post" >
+
+        <h1 class="h3 mb-3 fw-normal">Inicia Sesión</h1>
+
+        <div class="form-floating">
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", placeholder = "Introduce" })
+        </div>
+        <br />
+        <div class="form-floating">
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Contraseña" })
+
+        </div>
+        <button class="w-100 btn btn-lg" style="background-color: #7ed956;" type="submit">Iniciar Sesión</button>
+        <br />
+        <br />
+        <a href="/login/registro" class="mt-5 mb-3 text-muted">¿No tienes cuenta?</a>
+        <br />
+        <br />
+        <a href="/" class="mt-5 mb-3 text-muted">&copy; Bicistock</a>
+
+
+    </form>
+    </main>
+</body>
+</html>

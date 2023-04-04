@@ -1,0 +1,116 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.iconos {
+    margin:auto;
+    width:100%;
+    flex-direction:row;
+    display:flex;
+    justify-content:right;
+    text-align:right;
+}
+
+.contenedor{
+    display:flex;
+    flex-direction:row;
+    max-width:90%;
+    align-content:center;
+
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' fill='%23079200'%3e%3cpath d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'/%3e%3c/svg%3e") !important;
+    margin-left: 90%;
+}
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' fill='%23079200'%3e%3cpath d='M192 448c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l137.4 137.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448z'/%3e%3c/svg%3e") !important;
+    margin-right: 90%;
+}
+
+.spinner-wrapper
+{
+    background-color: white;
+    position:fixed;
+    top: 0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:all 1s;
+}
+
+.preload{
+    width:5%;
+}

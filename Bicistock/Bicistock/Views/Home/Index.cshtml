@@ -1,0 +1,340 @@
+﻿@model Bicistock.Common.Models.CS_ModeloGeneral;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "../Shared/_LayoutNav.cshtml";
+    Context.Session.SetInt32("errorLogin", 0);
+    ViewData["Title"] = "Inicio";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Bethany Bootstrap Template - Index</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+
+
+</head>
+
+<body>
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+            <h1>Bicistock</h1>
+            <h2>Con Bicistock, ¡siempre listos para pedalear!</h2>
+            
+                
+                @if (!string.IsNullOrEmpty(Context.Session.GetString("usuarioActivo")))
+                {
+                    <a href="/login" class="btn-get-started scrollto"><i class="bi bi-person-fill"></i> @Context.Session.GetString("usuarioActivo")</a>
+                }
+                else
+                {
+                   <a href="/login" class="btn-get-started scrollto"><i class="bi bi-person-fill"></i> Inicia Sesión</a>
+                }
+           
+    
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Clients Section ======= -->
+        <section id="clients" class="clients">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="/Images/shimano.png" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="/Images/sram.png" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="300">
+                        <img src="/Images/maxis.png" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="/Images/truvativ.jpg" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="500">
+                        <img src="/Images/rockshox.png" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="600">
+                        <img src="/Images/michelin.png" class="img-fluid" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- End Brands Section -->
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+
+                <div class="row content">
+                    <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                        <h2 class="text-center">Bienvenido a Bicistock</h2>
+                        <h3 class="text-center">Tu proveedor de bicicletas y componentes líder en el mercado</h3>
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
+                        <p>
+                            En Bicistock, nos enorgullece ofrecer una amplia selección de bicicletas
+                            y componentes de alta calidad de las marcas más respetadas de la industria, incluyendo:
+                        </p>
+                        <ul>
+                            <li><i class="ri-check-double-line"></i> SHIMANO</li>
+                            <li><i class="ri-check-double-line"></i> SRAM</li>
+                            <li><i class="ri-check-double-line"></i> MAXXIS</li>
+                            <li><i class="ri-check-double-line"></i> TRUVATIV</li>
+                            <li><i class="ri-check-double-line"></i> MICHELIN</li>
+                            <li><i class="ri-check-double-line"></i> ROCKSHOX</li>
+                        </ul>
+                        <p class="fst-italic">
+                            Como proveedor líder en el mercado, entendemos que nuestros clientes dependen de nosotros para mantenerse
+                            actualizados con las últimas tendencias y tecnologías en bicicletas y componentes
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+        <!-- ======= Counts Section ======= -->
+        <section id="counts" class="counts">
+            <div class="container">
+
+                <div class="row counters">
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-purecounter-start="0" data-purecounter-end="894" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Clientes</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-purecounter-start="0" data-purecounter-end="2542" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Pedidos Realizados</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-purecounter-start="0" data-purecounter-end="14425" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Horas en el taller</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-purecounter-start="0" data-purecounter-end="156" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Ruedas Pinchadas</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Counts Section -->
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-right">
+                        <div class="content">
+                            <h3>Por qué elegir BiciStock?</h3>
+                            <p>
+                                En Bicistock, sabemos que confiar en alguien para reparar o mantener tu bicicleta puede ser una decisión difícil. Por eso, queremos asegurarte que somos la mejor opción para ti.
+                            </p>
+                            <div class="text-center">
+                                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="icon-boxes d-flex flex-column justify-content-center">
+                            <div class="row">
+                                <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                        <h4>Calidad de productos</h4>
+                                        <p>Solo ofrecemos productos sometidos a rigurosas pruebas de calidad</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bi bi-people"></i>
+                                        <h4>Colaboraciones</h4>
+                                        <p>Tenemos colaboraciones con marcas que nos permiten ofrecer los mejores productos y eventos</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bi bi-cash-coin"></i>
+                                        <h4>Precios Competitivos</h4>
+                                        <p>Ofrecemos el mejor precio sin restar la calidad al producto final</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End .content-->
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Why Us Section -->
+        <!-- ======= Cta Section ======= -->
+        <section id="cta" class="cta">
+            <div class="container">
+
+                <div class="text-center" data-aos="zoom-in">
+                    <h3>¡Unete a Nuestros Eventos!</h3>
+                    <p> Estos eventos incluyen demostraciones de productos, clínicas de mantenimiento y reparación, y paseos en bicicleta con expertos de la industria. ¡No te pierdas la oportunidad de aprender de los mejores y estar siempre un paso adelante en la industria de la bicicleta!</p>
+                    <a class="cta-btn" href="#">Eventos</a>
+                </div>
+
+            </div>
+        </section><!-- End Cta Section -->
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services section-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="section-title" data-aos="fade-right">
+                            <h2>SERVICIOS</h2>
+                            <p>En Bicistock, estamos comprometidos con mantener tu bicicleta en las mejores condiciones posibles.<br /><br /> Ofrecemos una amplia gama de servicios de reparación y mantenimiento para asegurarnos de que tu bicicleta siempre esté lista para rodar.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-stretch">
+                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+                                    <div class="icon"><i class="bi bi-bandaid"></i></div>
+                                    <h4><a href="">Reparación de pinchazos</a></h4>
+                                    <p>¿Un pinchazo? No problemo. Lo arreglamos en un pispás. ¡Deja de perder tiempo caminando con tu bici y vuelve a rodar con estilo!</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
+                                    <div class="icon"><i class="bi bi-gear-wide"></i></div>
+                                    <h4><a href="">Ajuste de Cambios</a></h4>
+                                    <p>¿Tus cambios van de mal en peor? ¡Atrévete a dar el cambio y rueda con la confianza de tener una bicicleta en perfecto estado!</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-stretch mt-4">
+                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
+                                    <div class="icon"><i class="bi bi-wrench-adjustable"></i></div>
+                                    <h4><a href="">Cambio de Frenos</a></h4>
+                                    <p>¿Frenos chirriantes que te hacen pasar vergüenza frente a tus amigos? En Bicistock no juzgamos, ¡sólo los arreglamos!</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-stretch mt-4">
+                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="400">
+                                    <div class="icon"><i class="bi bi-stars"></i></div>
+                                    <h4><a href="">Limpieza y mantenimiento</a></h4>
+                                    <p>Ofrecemos servicios de limpieza y mantenimiento para mantener a tu bicicleta en óptimas condiciones. ¡dale a tu bicicleta el amor que se merece en Bicistock!</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Services Section -->
+
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Bethany</h3>
+                        <p>
+                            A108 Adam Street <br>
+                            New York, NY 535022<br>
+                            United States <br><br>
+                            <strong>Phone:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Bethany</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+</body>
+
+</html>
+

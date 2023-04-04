@@ -1,0 +1,50 @@
+﻿@model Bicistock.Common.Models.CS_ModeloGeneral;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "../Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Crear Bici";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BikeInsert</title>
+</head>
+<body>
+    <center>
+        <h1 class="h2">CREAR BICICLETA</h1>
+    </center>
+    <div class="d-flex justify-content-center">
+        <form action="#" method="post" enctype="multipart/form-data" style="margin-top:10%;">
+            <br />
+            <div class="wthree-field">
+
+                @Html.TextBoxFor(n => n.BikeEntity.Name, new { @class = "form-control", @placeholder = "Nombre Bici" })
+            </div>
+            <br />
+            <div class="wthree-field">
+
+                @Html.TextBoxFor(n => n.BikeEntity.Price, new { @class = "form-control", @placeholder = "Precio" })
+
+            </div>
+
+            <br />
+            <center>
+                @Html.DropDownListFor(x => x.Brand.Id, new SelectList(Model.BrandList, "Id", "Name"), "--SELECCIONA MARCA--")
+            </center>
+
+            <br />
+            <br />
+            <div class="mb-3">
+                @Html.TextBoxFor(i => i.BikeEntity.Image_upload, new { @type = "file", @class = "form-control" })
+            </div>
+            <br />
+
+            <div class="wthree-field d-flex justify-content-center">
+                <button type="submit" class="w-100 btn btn-lg" style="background-color: #7ed956;" id="boton">Crear</button>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+﻿@{
+    Layout = null;
+}
+@using (Html.BeginForm("Activate","Profile",FormMethod.Post))
+{
+    <label>Introduce el código enviado al correo</label>
+    <input type="number" name="code"/>
+    <button type="submit">Activar</button>
+}

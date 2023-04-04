@@ -1,0 +1,122 @@
+﻿@model Bicistock.Common.Models.CS_ModeloGeneral;
+@using Microsoft.AspNetCore.Http;
+
+@{
+    Layout = "../_ViewPDF.cshtml";
+}
+<div class="contenedor">
+    <table style="width:100%">
+        <tr>
+            <td>
+                <img src="~/Images/minLogo.png" style="width:200px;" />
+            </td>
+            <td style="text-align:right">
+                <table style="margin-right:0;margin-left:auto">
+                    <tr><td><p class="title2">LISTADO DE PRODUCTOS</p></td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+ <table style="width:100%">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <br />
+                            <br />
+                            <p class="title">Bicicletas</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+
+    <table class="tbproductos" style="width:100%">
+        <thead>
+            <tr>
+                <th class="tbth">Bicicleta</th>
+                <th class="tbth" style="width:130px">Marca</th>
+                <th class="tbth" style="width:130px">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.BikeList)
+                {
+                    <tr>
+                        <td class="td-item">
+                            <p class="item">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </p>
+                        </td>
+                        <td class="td-item">
+                            <p class="item">
+                                @Html.DisplayFor(modelItem => item.BrandName)
+                            </p>
+                        </td>
+                        <td class="td-item">
+                            <p class="item">
+                                @Html.DisplayFor(modelItem => item.Price) €
+                            </p>
+                        </td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+    </div>
+
+    <div class="contenedor">
+    <br />
+    <table style="width:100%">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <p class="title">Componentes</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+
+    <table class="tbproductos" style="width:100%">
+        <thead>
+            <tr>
+                <th class="tbth">Bicicleta</th>
+                <th class="tbth" style="width:130px">Marca</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.ComponentList)
+                {
+                    <tr>
+                        <td class="td-item">
+                            <p class="item">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </p>
+                        </td>
+                        <td class="td-item">
+                            <p class="item">
+                                @Html.DisplayFor(modelItem => item.BrandName)
+                            </p>
+                        </td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
