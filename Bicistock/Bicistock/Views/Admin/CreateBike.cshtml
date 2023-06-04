@@ -1,0 +1,115 @@
+﻿@model Bicistock.Common.Models.InventoryManager;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "../Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Crear Bici";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BikeInsert</title>
+    <script>
+        function previewImagen() {
+            var imagenSeleccionada = document.getElementById("imagenProducto").files[0];
+            var imagenPrevia = document.getElementById("imagenPrevia");
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                imagenPrevia.src = e.target.result;
+            }
+
+            reader.readAsDataURL(imagenSeleccionada);
+        }
+
+        function updateName() {
+            const inputField = document.getElementById('nameBikeInput');
+            const output = document.getElementById('nameBikeOutput');
+
+            output.textContent = inputField.value;
+        }
+
+        function updateBrand() {
+            const inputField = document.getElementById('brandInput');
+            const output = document.getElementById('nameBrand');
+
+            output.textContent = inputField.options[inputField.selectedIndex].textContent;
+        }
+
+        function updateDescription() {
+            const inputField = document.getElementById('descriptionInput');
+            const output = document.getElementById('descriptionOutput');
+
+            output.textContent = inputField.value;
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h2>CREAR BICICLETA</h2>
+    </center>
+    <div class="container-fluid">
+        <div class="row" style="margin-top:5%;">
+            <div class="col-sm-2">
+                <!--SPACING-->
+            </div>
+            <div class="col-sm-5 justify-content-center d-flex" style="border-right: 1px solid gray;">
+
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <center>
+                        <h2>Datos</h2>
+                    </center>
+
+                    <br />
+                    <div class="mb-3">
+                        @Html.TextBoxFor(n => n.BikeEntity.Name, new { @class = "form-control", @placeholder = "Nombre Bicicleta", @id ="nameBikeInput", @onkeyup="updateName()" })
+                    </div>
+                    <br />
+                    <div class="mb-3">
+                        @Html.DropDownListFor(x => x.Brand.Id, new SelectList(Model.BrandList, "Id", "Name"), "--SELECCIONA MARCA--", new {@class = "form-select", @onchange="updateBrand()", @id="brandInput"})
+                    </div>
+                    <br />
+                    <div class="mb-3">
+                        <div class="col-sm-12">
+                            <label class="form-label">Descripción</label>
+                            @Html.TextAreaFor(x => x.BikeEntity.Description, new { @class = "form-control", @rows = 10, @placeholder = "Escribe aquí tu mensaje...", @id="descriptionInput", @onkeyup="updateDescription()" })
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="mb-3">
+                        <center>
+
+                            @Html.TextBoxFor(i => i.BikeEntity.Image_upload, new { @type = "file", @class = "form-control", @id="imagenProducto", @name="imagenProducto", @onchange="previewImagen()", @accept="image/*" })
+                            <br />
+
+                        </center>
+                    </div>
+                    <br />
+
+                    <div class="wthree-field d-flex justify-content-center">
+                        <button type="submit" class="w-100 btn btn-success" id="boton">Crear</button>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-5">
+                <center>
+                    <h2>Previsualización</h2>
+                </center>
+                <div class="form-control text-center">
+                    <img id="imagenPrevia" src="#" alt="Previsualización de la imagen" class="card-img-right img-thumbnail">
+                    <h3 id="nameBikeOutput"></h3>
+                    <br />
+                    <h4 id="nameBrand"></h4>
+                    <br />
+                    <p id="descriptionOutput"></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

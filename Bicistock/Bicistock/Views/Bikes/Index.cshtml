@@ -1,0 +1,120 @@
+﻿@model Bicistock.Common.Models.InventoryManager;
+@{
+    Layout = "../Shared/_LayoutSubPage.cshtml";
+    int cont = 1;
+    string nameModal = "modal";
+    bool hayBicis = false;
+    ViewData["Title"] = "Lista Bicis";
+}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <h2 style="padding:5%;" class="page-section-heading text-center text-uppercase text-secondary mb-0">LISTA DE BICICLETAS</h2>
+        <div class="divider-custom">
+
+            <form action="#" method="post">
+
+                <div class="input-group mb-3 col-md-3 justify-content-end">
+                    <div class="form-outline text-center pe-3">
+                        @Html.DropDownListFor(x => x.Brand.Id, new SelectList(Model.BrandList, "Id", "Name"), "--MOSTRAR TODAS--",new {@class="form-select"} )
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-success" id="boton">Buscar</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <hr />
+            <div class="row justify-content-center">
+
+
+                @foreach (var item in Model.BikeList)
+                {
+                    if (Model.Brand is null || Model.Brand.Id == 0)
+                    {
+                        <div class="col-md-5 col-lg-4 mb-5" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#@nameModal@cont">
+                                <img class="img-fluid" src="@item.Image" />
+                                <h4>@item.Name</h4>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-modal modal fade" id="@nameModal@cont" tabindex="-1" aria-labelledby="@nameModal@cont" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                    <div class="modal-body text-center pb-5">
+                                        <div class="container">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-8">
+                                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">@item.Name</h2>
+
+                                            <img class="d-block w-100" src="@item.Image">
+
+                                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                                        Salir
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        cont++;
+                        hayBicis = true;
+                    }
+                    else
+                    {
+                        if (item.BrandId == Model.Brand.Id)
+                        {
+                            hayBicis = true;
+                            <div class="col-md-6 col-lg-4 mb-5">
+                                <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#@nameModal@cont">
+                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                    </div>
+                                    <h2>@item.Name</h2>
+                                    <img class="img-fluid" src="@item.Image" />
+                                </div>
+                            </div>
+                            <div class="portfolio-modal modal fade" id="@nameModal@cont" tabindex="-1" aria-labelledby="@nameModal@cont" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                        <div class="modal-body text-center pb-5">
+                                            <div class="container">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-lg-8">
+                                                        <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">@item.Name</h2>
+                                                        <h4 class="portfolio-modal-title text-secondary text-uppercase mb-0">@item.Description</h4>
+
+                                            <img class="d-block w-100" src="@item.Image">
+                                                        <button class="btn btn-primary" data-bs-dismiss="modal">
+                                                            Salir
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            cont++;
+                        }
+                    }
+                }
+                @if (hayBicis == false)
+                {
+                    <h2 class="text-center" style="margin-top:10%;">No tenemos bicicletas con esa marca en nuestro Stock</h2>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,50 @@
+﻿@model Bicistock.Common.Models.InventoryManager;
+@{
+    Layout = "../Shared/_LayoutNav.cshtml";
+    ViewData["Title"] = "Eventos";
+}
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+
+<!-- Portfolio Section-->
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2 style="padding:5%;" class="page-section-heading text-center text-uppercase text-secondary mb-0">EVENTOS CERCA DE TI</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center">
+
+            @foreach (var item in Model.EventList)
+            {
+                <div class="row mb-1" data-aos="fade-right" data-aos-delay="400" data-aos-easing="ease">
+                    <div class="col-md-12">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2 text-primary">ORGANIZADO POR:</strong>
+                                <h3 class="mb-0">@item.BrandName</h3>
+                                <p class="card-text mb-auto">@item.EventDescription</p>
+                            </div>
+                            <div class="col-auto d-none d-lg-block">
+                                <iframe src="@item.MapURL" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            }
+            </div>
+        </div>
+</section>
+

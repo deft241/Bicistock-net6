@@ -1,0 +1,37 @@
+﻿@model Bicistock.Common.Models.AppointmentManager;
+@using Microsoft.AspNetCore.Http;
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    @{
+        Layout = "../Shared/_LayoutSubPage.cshtml";
+        ViewData["Title"] = "Estado Solicitud";
+    }
+
+</head>
+<body class="container bg-light">
+
+    <div class="container" style="margin-top:10%;">
+        <main>
+            <div class="text-center" style="margin-top:30%">
+                <img src="/Images/comprobado.png" style="width:10%" >
+                <br />
+                <br />
+                <br />  
+                <h2>Cita Solicitada con éxito, revisa el correo para más información</h2>
+                <br />
+                <br />
+                <a href="/home" class="btn btn-success">Volver a Inicio</a>
+            </div>
+
+
+
+        </main>
+    </div>
+</body>
+</html>

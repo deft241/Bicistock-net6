@@ -1,0 +1,136 @@
+﻿@model Bicistock.Common.Models.User;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "../Shared/_LayoutSubPage.cshtml";
+    int error = Convert.ToInt32(Context.Session.GetInt32("updateUser"));
+
+}
+
+<body class="container" style="margin-top:5%;">
+    <div class="container center rounded bg-white mt-5 mb-5">
+        @if (error == 1)
+        {
+
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <i class="bi bi-check" style="margin:5px"></i>
+                <div>
+                    Datos actualizados con exito
+                </div>
+            </div>
+        }
+        @if (error == 0)
+        {
+
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill" style="margin:5px"></i>
+                <div>
+                    Error al guardar los cambios
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-md-12 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5 align-middle">
+                    <h4 class="text-right">Tu Perfil</h4>
+
+                    <img class="rounded-circle mt-5" width="150px" src="~/Images/biker.png"><span class="font-weight-bold">@Model.UserName</span><span class="text-black-50">@Model.UserEmail</span><span> </span>
+                    <br />
+                    <a href="/profile/logout" class="btn btn-danger">Cerrar Sesión</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+
+
+                @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { id = "editForm" }))
+                {
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label class="labels">Nombre </label>
+                                @Html.TextBoxFor(u => u.Name, new { @class = "form-control", @value = Model.Name })
+                            </div>
+                            <div class="col-md-4">
+                                <label class="labels">Apellidos</label>
+                                @Html.TextBoxFor(u => u.Surnames, new { @class = "form-control", @value = Model.Surnames })
+                            </div>
+                            <div class="col-md-4">
+                                <label class="labels">Correo</label>
+                                @Html.TextBoxFor(u => u.UserEmail, new { @class = "form-control", @value = Model.UserEmail })
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label class="labels">DNI</label>
+                                @Html.TextBoxFor(u => u.Dni, new { @class = "form-control", @value = Model.Dni, @type = "text", @maxlength = "9"})
+                            </div>
+                            <div class="col-md-3">
+                                <label class="labels">Número de Teléfono</label>
+                                @Html.TextBoxFor(u => u.Phone, new { @class = "form-control", @value = Model.Phone, @type = "number", @inputmode="numeric" ,@maxlength = "9"})
+
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="labels">Edad</label>
+                                @Html.TextBoxFor(u => u.Age, new { @class = "form-control", @value = Model.Age, @type = "number", @inputmode="numeric" ,@maxlength = "3"})
+                            </div>
+                            <div class="col-md-3">
+                                <label class="labels">Verificado</label>
+                                @if (Model.Verified == "T")
+                                {
+                                    <div class="form-control btn btn-success">Verificado</div>
+                                }
+                                else
+                                {
+                                    <a href="/profile/activate"><div class="form-control btn btn-danger">No Verificado</div></a>
+                                }
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-5 text-center" id="btnContainer">
+                            <button type="button" class="btn btn-primary" id="editButton" onclick="switchClassname()">Editar Perfil</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        function disableForm() {
+            $('input, select, textarea', 'form').prop('disabled', true);
+        }
+
+        $(document).ready(function () {
+            disableForm();
+        });
+
+        function switchClassname() {
+            var btnElement = document.getElementById("editButton");
+
+            if (btnElement.className == "btn btn-primary") {
+                btnElement.className = "btn btn-warning";
+                $('input, select, textarea').prop("disabled", false);
+                $("#editButton").text("Bloquear Edición")
+                var nuevoBoton = $('<button id="newButton" class="btn btn-success" type="submit">Guardar Cambios</button>');
+                $('#btnContainer').append(nuevoBoton);
+
+            }
+            else if (btnElement.className == "btn btn-warning") {
+                btnElement.className = "btn btn-primary";
+                $("#editButton").text("Editar Perfil")
+                $('input, select, textarea').prop('disabled', true)
+                $('#newButton').remove();
+
+            }
+        }
+
+        
+
+    </script>
+</body>

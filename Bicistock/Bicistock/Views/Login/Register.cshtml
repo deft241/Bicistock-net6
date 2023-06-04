@@ -1,0 +1,115 @@
+﻿@model Bicistock.Common.Models.User;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "../Shared/_LayoutSubPage.cshtml";
+    int errorLogin = Convert.ToInt32(Context.Session.GetInt32("errorLogin"));
+    int userExists = Convert.ToInt32(Context.Session.GetInt32("existeUsuario"));
+    ViewData["Title"] = "Registro";
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+</head>
+<body class="bg-light">
+
+    <div class="container" style="margin-top:10%;">
+        <main>
+                @if (errorLogin == 1)
+                {
+
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill" style="margin:5px"></i>
+                        <div>
+                        Faltan campos requeridos por completar
+                        </div>
+                    </div>
+                }
+                @if (userExists == 1)
+                {
+
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill" style="margin:5px"></i>
+                        <div>
+                            Ese nombre de usuario ya está en uso
+                        </div>
+                    </div>
+                }
+            <div class="py-5 text-center">
+                <h2>Regístrate</h2>
+                <p class="lead">Rellena los campos con tu información</p>
+            </div>
+
+            <div>
+
+                <form method="post">
+                    <div class="row g-3">
+                        <div class="col-sm-4">
+                            <label for="firstName" class="form-label">Nombre <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="lastName" class="form-label">Apellidos <span class="text-muted">(Opcional)</span></label>
+                            @Html.TextBoxFor(x => x.Surnames, new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="lastName" class="form-label">DNI <span class="text-muted">(Opcional)</span></label>
+                            @Html.TextBoxFor(x => x.Dni, new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="col-6">
+                            <label for="username" class="form-label">Nombre de Usuario <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+
+                        </div>
+                        <div class="col-6">
+                            <label for="username" class="form-label">Email <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(x => x.UserEmail, new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+
+                        </div>
+
+
+                        <div class="col-6">
+                            <label for="address2" class="form-label">Edad <span class="text-muted">(Opcional)</span></label>
+                            @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="country" class="form-label">Teléfono <span class="text-muted">(Opcional)</span></label>
+                            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+
+                        </div>
+                        <p class="text-muted"><span class="text-danger">*</span> Los campos con este simbolo, son obligatorios</p>
+                    </div>
+                    <button style="margin-top:10%; background-color: #7ed956;" class="w-100 btn btn-lg" type="submit">Crea tu cuenta</button>
+                    <center>
+                        <br />
+                        <br />
+                        <a href="/login" class="mt-5 mb-3 text-muted">¿Ya tienes cuenta?</a>
+                        <br />
+                        <br />
+                        <a href="/home" class="mt-5 mb-3 text-muted">&copy; Bicistock</a>
+                    </center>
+                </form>
+            </div>
+
+
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "../Shared/_LayoutSubPage.cshtml";
+}
+
+<div class="container" style="margin-top:15%;">
+    <div class="py-5 text-center">
+        <p class="lead">Introduce el código enviado a tu correo</p>
+    </div>
+    @using (Html.BeginForm("Activate", "Profile", FormMethod.Post))
+    {
+        <div class="text-center">
+        <div class="row g-3">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+                <input type="number" name="code" class="form-control" />
+            </div>
+            
+        </div>
+            <button type="submit" class="btn btn-success" style="margin-top:5%">Activar</button>
+            <p class="text-muted" style="margin-top:5%">El código caducará al cerrar esta pestaña</p>
+        </div>
+    }
+</div>

@@ -1,0 +1,46 @@
+﻿@model Bicistock.Common.Models.AdminPanelData;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "../Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Añadir Componente";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <center>
+        <h1 class="h2">AÑADIR COMPONENTE</h1>
+    </center>
+    <div class="d-flex justify-content-center">
+        <form action="#" method="post" enctype="multipart/form-data" style="margin-top:10%;">
+            <br />
+            <div class="wthree-field">
+
+                @Html.TextBoxFor(n => n.Component.Name, new { @class = "form-control", @placeholder = "Nombre Componente" })
+            </div>
+            <br />
+
+            <br />
+            <center>
+                @Html.DropDownListFor(x => x.Brand.Id, new SelectList(Model.BrandList, "Id", "Name"), "--SELECCIONA MARCA--")
+            </center>
+
+            <br />
+            <br />
+            <div class="mb-3">
+                @Html.TextBoxFor(i => i.Component.Component_Image_Upload, new { @type = "file", @class = "form-control" })
+            </div>
+            <br />
+
+            <div class="wthree-field d-flex justify-content-center">
+                <button type="submit" class="w-100 btn btn-lg" style="background-color: #7ed956;" id="boton">Crear</button>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

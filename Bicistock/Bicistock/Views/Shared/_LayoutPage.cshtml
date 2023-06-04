@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "../Shared/_LayoutNav.cshtml";
+}
+<body>
+
+  <main id="main">
+
+    <section class="inner-page">
+      <div class="container">
+        @RenderBody()
+      </div>
+    </section>
+
+  </main>
+  <!-- End #main -->
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
