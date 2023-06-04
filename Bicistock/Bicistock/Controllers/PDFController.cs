@@ -67,5 +67,20 @@ namespace Bicistock.Controllers
             return new ViewAsPdf("Productos", objModeloGeneral);
         }
 
+        public IActionResult Eventos()
+        {
+            Logger.Logger logger = new Logger.Logger();
+
+            EventService eventService = new EventService();
+
+            InventoryManager objModeloGeneral = new InventoryManager();
+
+            objModeloGeneral.EventList = eventService.MostrarEventos();      
+
+            logger.Info("Se ha generado un PDF de la lista de productos");
+
+            return new ViewAsPdf("Eventos", objModeloGeneral);
+        }
+
     }
 }

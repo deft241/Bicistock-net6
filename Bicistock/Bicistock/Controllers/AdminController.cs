@@ -68,17 +68,17 @@ namespace Bicistock.Controllers
         {
             BrandService conexionMarca = new BrandService();
             Brand Brand = new Brand();
-            AdminPanelData objModeloAdminPanel = new AdminPanelData();
+            InventoryManager inventoryManager = new InventoryManager();
 
-            objModeloAdminPanel.BrandList = conexionMarca.MostrarMarcas();
+            inventoryManager.BrandList = conexionMarca.MostrarMarcas();
 
 
-            return View(objModeloAdminPanel);
+            return View(inventoryManager);
         }
 
 
         [HttpPost]
-        public IActionResult CreateComponent(AdminPanelData nuevoComponente)
+        public IActionResult CreateComponent(InventoryManager nuevoComponente)
         {
             Logger.Logger logger = new Logger.Logger();
             ComponentService conexionComponente = new ComponentService();
@@ -86,7 +86,7 @@ namespace Bicistock.Controllers
             string componenteImagen;
             string description = nuevoComponente.Component.Description;
 
-            int BrandId = nuevoComponente.Brand.Id;
+            int BrandId = nuevoComponente.Component.BrandId;
 
             //Meter foto carpeta imagenes
             string wwwPath = Environment.WebRootPath;
@@ -114,7 +114,7 @@ namespace Bicistock.Controllers
 
                 logger.Info("Se ha creado el Componente " + Name);
                 conexionComponente.InsertarComponente(Name, BrandId, componenteImagen, description);
-                return RedirectToAction("AñadirComponente");
+                return RedirectToAction("CreateComponent");
             }
 
         }
@@ -170,7 +170,7 @@ namespace Bicistock.Controllers
 
                 conexionBici.MeterBici(name, brandId, image, description);
                 logger.Info("Se ha creado la bicicleta " + name);
-                return RedirectToAction("AdminBikes");
+                return RedirectToAction("CreateBike");
             }
 
         }

@@ -42,7 +42,7 @@ namespace Bicistock.Data.Data.Repositories
         public void InsertarComponente(string nombreComponente, int idComponente, string rutaImagen, string description)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "CrearComponente";
+            comando.CommandText = "NewComponent";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@nombreComponente", nombreComponente);
             comando.Parameters.AddWithValue("@idmarca", idComponente);

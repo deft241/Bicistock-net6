@@ -58,7 +58,6 @@ namespace Bicistock.Controllers
 
             respuestaUsuario = conexionUsuario.MostrarUsuario(user);
 
-            int idAppointment = conexionCita.GetCitationId(respuestaUsuario.UserName);
             if (string.IsNullOrEmpty(respuestaUsuario.UserName))
             {
                 logger.Error("Se ha intentado crear una cita con un nombre de usuario no valido, el nombre del intento ha sido: " + cita.CurrentUser);
@@ -68,6 +67,8 @@ namespace Bicistock.Controllers
             else
             {
                 conexionCita.NuevaCita(cita.Date, actual, respuestaUsuario.UserName, "Pendiente", cita.Brand.Id, cita.Description);
+
+                int idAppointment = conexionCita.GetCitationId(respuestaUsuario.UserName);
 
                 logger.Info("Se ha creado una cita a Name de " + respuestaUsuario.UserName);
 
