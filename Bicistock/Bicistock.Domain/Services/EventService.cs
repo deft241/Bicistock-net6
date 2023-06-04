@@ -21,11 +21,11 @@ namespace Bicistock.Domain.Services
             return CitationList;
         }
 
-        public void InsertarEvento(string descipcion, string imagen, int Brand)
+        public void InsertarEvento(int brand, string description, string url)
         {
             EventRepository accesoBD = new EventRepository();
 
-            accesoBD.InsertarEvento(descipcion, imagen, Brand);
+            accesoBD.InsertarEvento(brand, description, url);
         }
 
     }

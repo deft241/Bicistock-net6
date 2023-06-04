@@ -10,17 +10,9 @@ namespace Bicistock.Controllers
         {
             InventoryManager inventoryManager = new InventoryManager();
             EventService eventService = new EventService();
-            string placeholder = "/Images/placeholder.jpg";
 
             inventoryManager.EventList = eventService.MostrarEventos();
 
-            foreach (var item in inventoryManager.EventList)
-            {
-                if (string.IsNullOrEmpty(item.Event_Image))
-                {
-                    item.Event_Image = placeholder;
-                }
-            }
 
             return View(inventoryManager);
         }

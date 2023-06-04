@@ -25,14 +25,14 @@ namespace Bicistock.Data.Data.Repositories
 
         }
 
-        public void InsertarEvento(string descipcion, string imagen, int Brand)
+        public void InsertarEvento(int brand, string description, string url)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "InsertarEventos";
+            comando.CommandText = "NewEvent";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@Description", descipcion);
-            comando.Parameters.AddWithValue("@imagen", imagen);
-            comando.Parameters.AddWithValue("@Brand", Brand);
+            comando.Parameters.AddWithValue("@Brand", brand);
+            comando.Parameters.AddWithValue("@Description", description);
+            comando.Parameters.AddWithValue("@Url", url);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.CerrarConexion();

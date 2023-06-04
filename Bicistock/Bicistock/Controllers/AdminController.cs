@@ -179,13 +179,13 @@ namespace Bicistock.Controllers
 
 
 
-        public IActionResult AñadirEvento()
+        public IActionResult CreateEvent()
         {
 
 
             BrandService conexionMarca = new BrandService();
             Brand Brand = new Brand();
-            AdminPanelData objModeloAdmin = new AdminPanelData();
+            InventoryManager objModeloAdmin = new InventoryManager();
 
             objModeloAdmin.BrandList = conexionMarca.MostrarMarcas();
 
@@ -195,43 +195,19 @@ namespace Bicistock.Controllers
 
 
         [HttpPost]
-        public IActionResult AñadirEvento(AdminPanelData nuevoEvento)
+        public IActionResult CreateEvent(InventoryManager nuevoEvento)
         {
             Logger.Logger logger = new Logger.Logger();
             EventService conexionEvento = new EventService();
             string desc = nuevoEvento.Event.EventDescription;
-            string eventoImagen;
 
             int BrandId = nuevoEvento.Brand.Id;
 
-            //Meter foto carpeta imagenes
-            string wwwPath = Environment.WebRootPath;
-            string contentPath = Environment.ContentRootPath;
+            conexionEvento.InsertarEvento(BrandId, desc, nuevoEvento.Event.MapURL);
+            logger.Info("Se ha creado un nuevo Evento");
+            HttpContext.Session.SetInt32("eventCreated", 1);
+            return RedirectToAction("CreateEvent");
 
-
-
-            string path = Path.Combine(Environment.WebRootPath, "Images");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            List<string> uploadedFiles = new List<string>();
-
-
-            string fileName = Path.GetFileName(nuevoEvento.Event.Event_Image_upload.FileName);
-            using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
-            {
-
-                nuevoEvento.Event.Event_Image_upload.CopyTo(stream);
-                uploadedFiles.Add(fileName);
-                eventoImagen = "/Images/" + fileName;
-                ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
-
-                conexionEvento.InsertarEvento(desc, eventoImagen, BrandId);
-                logger.Info("Se ha creado un nuevo Event");
-                return RedirectToAction("AñadirEvento");
-            }
 
         }
 

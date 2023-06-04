@@ -1,0 +1,112 @@
+﻿@model Bicistock.Common.Models.InventoryManager;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "../Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Crear Bici";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BikeInsert</title>
+    <script>
+
+        function updateName() {
+            const inputField = document.getElementById('nameEventInput');
+            const output = document.getElementById('nameEventOutput');
+
+            output.textContent = inputField.value;
+        }
+
+        function updateBrand() {
+            const inputField = document.getElementById('brandInput');
+            const output = document.getElementById('nameBrand');
+
+            output.textContent = inputField.options[inputField.selectedIndex].textContent;
+        }
+
+        function updateDescription() {
+            const inputField = document.getElementById('descriptionInput');
+            const output = document.getElementById('descriptionOutput');
+
+            output.textContent = inputField.value;
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h2>CREAR EVENTO</h2>
+    </center>
+    @if (Context.Session.GetInt32("eventCreated") == 1)
+    {
+        <div class="container">
+            <div class="alert alert-success d-flex align-items-center" style="margin-left:20%; max-height:50px" role="alert">
+                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"></svg>
+                <div>
+                    <i class="bi bi-check-circle-fill"></i>
+                    Evento creado con exito !
+                </div>
+            </div>
+        </div>
+    }
+    <div class="container-fluid">
+        <div class="row" style="margin-top:5%;">
+            
+            
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-5 justify-content-center d-flex" style="border-right: 1px solid gray;">
+
+                <form action="CreateEvent" method="post" enctype="multipart/form-data">
+                    <center>
+                        <h2>Datos</h2>
+                    </center>
+
+                    <br />
+                    <div class="mb-3">
+                        @Html.DropDownListFor(x => x.Brand.Id, new SelectList(Model.BrandList, "Id", "Name"), "--SELECCIONA MARCA--", new {@class = "form-select", @onchange="updateBrand()", @id="brandInput"})
+                    </div>
+                    <br />
+                    <div class="mb-3">
+                        <div class="col-sm-12">
+                            <label class="form-label">Descripción</label>
+                            @Html.TextAreaFor(x => x.Event.EventDescription, new { @class = "form-control", @rows = 10, @placeholder = "Escribe aquí tu mensaje...", @id="descriptionInput", @onkeyup="updateDescription()" })
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="mb-3">
+                        <center>
+
+                            @Html.TextBoxFor(i => i.Event.MapURL, new { @class = "form-control", @placeholder = "URL Mapa"})
+                            <br />
+
+                        </center>
+                    </div>
+                    <br />
+
+                    <div class="wthree-field d-flex justify-content-center">
+                        <button type="submit" class="w-100 btn btn-success" id="boton">Crear</button>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-5">
+                <center>
+                    <h2>Previsualización</h2>
+                </center>
+                <div class="form-control text-center">
+
+                    <h3 id="nameEventOutput"></h3>
+                    <br />
+                    <h4 id="nameBrand"></h4>
+                    <br />
+                    <p id="descriptionOutput"></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
