@@ -40,7 +40,7 @@ namespace Bicistock.Data.Data.Repositories
         {
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "BiciMarca";
+            comando.CommandText = "BikeByBrand";
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla.Load(leer);

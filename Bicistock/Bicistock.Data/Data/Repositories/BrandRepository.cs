@@ -16,7 +16,7 @@ namespace Bicistock.Data.Data.Repositories
         public DataTable Marcas()
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "sacarmarcas";
+            comando.CommandText = "GetBrands";
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla.Load(leer);

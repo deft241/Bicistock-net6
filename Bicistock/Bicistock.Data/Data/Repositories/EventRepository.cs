@@ -16,7 +16,7 @@ namespace Bicistock.Data.Data.Repositories
         {
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "MostrarEventos";
+            comando.CommandText = "ShowEvents";
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla.Load(leer);

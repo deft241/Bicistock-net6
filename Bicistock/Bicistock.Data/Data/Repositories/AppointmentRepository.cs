@@ -17,7 +17,7 @@ namespace Bicistock.Data.Data.Repositories
         {
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "SacaCitas";
+            comando.CommandText = "GetAppointments";
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla.Load(leer);
@@ -29,7 +29,7 @@ namespace Bicistock.Data.Data.Repositories
         public void Insertar(DateTime solicitud, DateTime actual, string nombreUsu, string estadoCita, int id_brand, string description)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "InsertarCita";
+            comando.CommandText = "NewAppointment";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Datecitation", solicitud);
             comando.Parameters.AddWithValue("@Daterequest", actual);
@@ -45,7 +45,7 @@ namespace Bicistock.Data.Data.Repositories
         public void Eliminar(int idCita)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "BorrarCita";
+            comando.CommandText = "DeleteAppointment";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idCita", idCita);
             comando.ExecuteNonQuery();

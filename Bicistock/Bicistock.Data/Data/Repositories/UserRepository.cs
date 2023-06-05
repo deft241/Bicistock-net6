@@ -16,7 +16,7 @@ namespace Bicistock.Data.Data.Repositories
         public DataTable MostrarUsuario(string UserName)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "MostrarUsuario";
+            comando.CommandText = "ShowUser";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@nombreusuario", UserName);
             leer = comando.ExecuteReader();
@@ -30,7 +30,7 @@ namespace Bicistock.Data.Data.Repositories
         {
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "MostrarUsuarios";
+            comando.CommandText = "ShowUsers";
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla.Load(leer);
@@ -43,7 +43,7 @@ namespace Bicistock.Data.Data.Repositories
             string phone, string verified, byte idPermission, string email)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "InsetarUsuario";
+            comando.CommandText = "NewUser";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Username", username);
             comando.Parameters.AddWithValue("@Password", Encrypt.GetSHA256(password));
@@ -63,7 +63,7 @@ namespace Bicistock.Data.Data.Repositories
         public void Eliminar(string username)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "EliminarUsuario";
+            comando.CommandText = "DeleteUser";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Username", username);
             comando.ExecuteNonQuery();
