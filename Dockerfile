@@ -8,12 +8,12 @@ WORKDIR /app
 
 COPY ./Bicistock/Bicistock/bin/Release/net6.0/linux-x64/ ./
 COPY ./Bicistock/Bicistock/wwwroot/ ./wwwroot
+COPY ./Bicistock/Bicistock/Rotativa ./Rotativa
 
-RUN git clone git@github.com:MatheusNCarvalho/wkhtmltox-0.12.4.git ./
+RUN chmod 755 -R ./Rotativa
 RUN apt-get update && apt-get install -y \
     libxrender1 \
     libfontconfig1 \
     libxext6
-RUN chmod 755 -R ./Rotativa
 
 ENTRYPOINT ["dotnet", "Bicistock.dll"]
