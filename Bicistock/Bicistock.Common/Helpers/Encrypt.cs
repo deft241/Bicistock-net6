@@ -5,6 +5,7 @@ namespace Capa_Soporte.Helpers
 {
     public class Encrypt
     {
+        //Encript the passed string
         public static string GetSHA256(string str)
         {
             SHA256 sha256 = SHA256.Create();

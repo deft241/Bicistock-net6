@@ -7,6 +7,7 @@ namespace Bicistock.Domain.Services
 {
     public class BrandService
     {
+        //Shows all brands
         public List<Brand> MostrarMarcas()
         {
             BrandRepository accesoBD = new BrandRepository();
@@ -25,6 +26,7 @@ namespace Bicistock.Domain.Services
             return listMarca;
         }
 
+        //Shows brand with an Id
         public Brand GetBrandById(int idBrand)
         {
             BrandRepository brandRepository = new BrandRepository();

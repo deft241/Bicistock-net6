@@ -2,6 +2,7 @@
 {
     public static class MailTemplate
     {
+        //Template for the emails
         public static readonly string CODE_EMAIL = @"
                                 <!DOCTYPE html>
                                 <html>

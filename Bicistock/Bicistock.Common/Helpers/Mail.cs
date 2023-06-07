@@ -5,6 +5,7 @@ namespace Capa_Soporte.Helpers
 {
     public class Mail
     {
+        //Send verification email
         public static string SendVerificationEmail(string to, string code)
         {
             string status = string.Empty;
@@ -41,6 +42,7 @@ namespace Capa_Soporte.Helpers
             }
             return status;
         }
+        //Send apointment remove email
         public static string SendRemoveAppointmentEmail(string to)
         {
             string status = string.Empty;

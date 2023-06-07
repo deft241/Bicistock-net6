@@ -7,6 +7,7 @@ namespace Bicistock.Domain.Services
 {
     public class EventService
     {
+        //Show all events
         public List<Event> MostrarEventos()
         {
             EventRepository accesoBD = new EventRepository();
@@ -21,6 +22,7 @@ namespace Bicistock.Domain.Services
             return CitationList;
         }
 
+        //Insert new event
         public void InsertarEvento(int brand, string description, string url)
         {
             EventRepository accesoBD = new EventRepository();

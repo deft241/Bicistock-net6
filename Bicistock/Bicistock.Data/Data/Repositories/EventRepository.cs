@@ -11,7 +11,7 @@ namespace Bicistock.Data.Data.Repositories
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
 
-
+        //Shows event
         public DataTable MostrarEvento()
         {
 
@@ -25,6 +25,7 @@ namespace Bicistock.Data.Data.Repositories
 
         }
 
+        //Create a new one
         public void InsertarEvento(int brand, string description, string url)
         {
             comando.Connection = conexion.AbrirConexion();

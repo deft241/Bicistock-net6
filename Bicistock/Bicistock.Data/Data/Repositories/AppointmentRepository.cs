@@ -12,7 +12,7 @@ namespace Bicistock.Data.Data.Repositories
         SqlCommand comando = new SqlCommand();
         DataRow dr;
 
-
+        //Show all appointments
         public DataTable MostrarCitas()
         {
 
@@ -25,7 +25,7 @@ namespace Bicistock.Data.Data.Repositories
             return tabla;
 
         }
-
+        //Create a new one
         public void Insertar(DateTime solicitud, DateTime actual, string nombreUsu, string estadoCita, int id_brand, string description)
         {
             comando.Connection = conexion.AbrirConexion();
@@ -42,6 +42,7 @@ namespace Bicistock.Data.Data.Repositories
             conexion.CerrarConexion();
         }
 
+        //Delete it
         public void Eliminar(int idCita)
         {
             comando.Connection = conexion.AbrirConexion();
@@ -53,6 +54,7 @@ namespace Bicistock.Data.Data.Repositories
             conexion.CerrarConexion();
         }
 
+        //Gets Appointment Id
         public DataTable GetCitationId(string username)
         {
 
@@ -66,6 +68,8 @@ namespace Bicistock.Data.Data.Repositories
             return tabla;
 
         }
+
+        //Gets Appointment by Id
         public DataTable GetCitationById(int id)
         {
             comando.Connection = conexion.AbrirConexion();

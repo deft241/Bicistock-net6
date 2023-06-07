@@ -7,7 +7,7 @@ namespace Bicistock.Domain.Services
 {
     public class AppointmentService
     {
-
+        //Shows Appointments
         public List<Appointment> MostrarCitas()
         {
             AppointmentRepository accesoBD = new AppointmentRepository();
@@ -22,6 +22,7 @@ namespace Bicistock.Domain.Services
             return CitationList;
         }
 
+        //Create an Appointment
         public void NuevaCita(DateTime solicitud, DateTime actual, string nombreUsu, string estadoCita, int id_brand, string description)
         {
             AppointmentRepository accesoBD = new AppointmentRepository();
@@ -30,12 +31,15 @@ namespace Bicistock.Domain.Services
             accesoBD.Insertar(solicitud, actual, nombreUsu, estadoCita, id_brand, description);
         }
 
+        //Delete an Appointment
         public void Eliminar(int idCita)
         {
             AppointmentRepository accesoBD = new AppointmentRepository();
 
             accesoBD.Eliminar(idCita);
         }
+
+        //Gets Appointment Id
         public int GetCitationId(string username)
         {
             AppointmentRepository accesoBD = new AppointmentRepository();
@@ -43,6 +47,8 @@ namespace Bicistock.Domain.Services
 
             return Convert.ToInt32(idCitation);
         }
+
+        //Gets Appointment by Id
         public Appointment GetCitationById(int id)
         {
             AppointmentRepository accesoBD = new AppointmentRepository();

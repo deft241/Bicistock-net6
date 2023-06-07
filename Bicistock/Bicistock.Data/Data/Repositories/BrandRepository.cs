@@ -12,7 +12,7 @@ namespace Bicistock.Data.Data.Repositories
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
 
-
+        //Gets all brand
         public DataTable Marcas()
         {
             comando.Connection = conexion.AbrirConexion();
@@ -24,6 +24,7 @@ namespace Bicistock.Data.Data.Repositories
             return tabla;
         }
 
+        //Gets a brand by id
         public DataTable GetBrandById(int idBrand)
         {
             comando.Connection = conexion.AbrirConexion();

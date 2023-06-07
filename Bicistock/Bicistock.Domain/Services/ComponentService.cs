@@ -6,7 +6,7 @@ namespace Bicistock.Domain.Services
 {
     public class ComponentService
     {
-
+        //Gets all components
         public List<Component> MostrarComponente()
         {
             ComponentRepository accesoBD = new ComponentRepository();
@@ -21,6 +21,7 @@ namespace Bicistock.Domain.Services
             return CitationList;
         }
 
+        //Gets a list of components with its brand
         public List<Component> ShowBrandComponent(int brandId)
         {
             ComponentRepository accesoBD = new ComponentRepository();
@@ -35,6 +36,7 @@ namespace Bicistock.Domain.Services
             return CitationList;
         }
 
+        //Inserts new component
         public void InsertarComponente(string nombreComponente, int idComponente, string rutaImagen, string desciption)
         {
             ComponentRepository accesoBD = new ComponentRepository();

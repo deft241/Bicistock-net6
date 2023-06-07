@@ -11,7 +11,7 @@ namespace Bicistock.Data.Data.Repositories
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
 
-
+        //Shows all components
         public DataTable MostrarComponentes()
         {
 
@@ -25,6 +25,7 @@ namespace Bicistock.Data.Data.Repositories
 
         }
 
+        //Gets the brand of a component
         public DataTable ShowBrandComponent(int brandId)
         {
 
@@ -39,6 +40,7 @@ namespace Bicistock.Data.Data.Repositories
 
         }
 
+        //Create a new one
         public void InsertarComponente(string nombreComponente, int idComponente, string rutaImagen, string description)
         {
             comando.Connection = conexion.AbrirConexion();

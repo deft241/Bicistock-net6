@@ -6,6 +6,7 @@ namespace Bicistock.Domain.Services
 {
     public class BikeService
     {
+        //Show all bikes
         public List<Bike> MostrarTodo()
         {
             CD_Bici accesoBD = new CD_Bici();
@@ -22,6 +23,7 @@ namespace Bicistock.Domain.Services
             return listaBicis;
         }
 
+        //Create a bike
         public void MeterBici(string name, int bikeId, string image, string description)
         {
             CD_Bici accesoBD = new CD_Bici();
@@ -29,6 +31,7 @@ namespace Bicistock.Domain.Services
             accesoBD.MeterBici(name, bikeId, image, description);
         }
 
+        //Gets a list of bikes with its brand
         public List<Bike> BiciMarca()
         {
             CD_Bici accesoBD = new CD_Bici();

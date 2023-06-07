@@ -13,6 +13,7 @@ namespace Bicistock.Data.Data.Repositories
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
 
+        //Shows an User
         public DataTable MostrarUsuario(string UserName)
         {
             comando.Connection = conexion.AbrirConexion();
@@ -25,7 +26,7 @@ namespace Bicistock.Data.Data.Repositories
             return tabla;
         }
 
-
+        //Shows all users
         public DataTable MostrarTodos()
         {
 
@@ -39,6 +40,7 @@ namespace Bicistock.Data.Data.Repositories
 
         }
 
+        //Creates a new one
         public void Insertar(string username, string password, string Dni, string name, string surnames, int age,
             string phone, string verified, byte idPermission, string email)
         {
@@ -60,6 +62,7 @@ namespace Bicistock.Data.Data.Repositories
             conexion.CerrarConexion();
         }
 
+        //Delete a user
         public void Eliminar(string username)
         {
             comando.Connection = conexion.AbrirConexion();
@@ -71,6 +74,7 @@ namespace Bicistock.Data.Data.Repositories
             conexion.CerrarConexion();
         }
 
+        //Activate an User
         public void ActivateUser(string username)
         {
             comando.Connection = conexion.AbrirConexion();
@@ -82,6 +86,7 @@ namespace Bicistock.Data.Data.Repositories
             conexion.CerrarConexion();
         }
 
+        //Updates its data
         public bool UpdateUser(User newUserData)
         {
 

@@ -10,7 +10,7 @@ namespace Bicistock.Data.Data.Repositories
         SqlDataReader leer;
         DataTable tabla = new DataTable();
         SqlCommand comando = new SqlCommand();
-
+        //Show a bike
         public DataTable Mostrar()
         {
             comando.Connection = conexion.AbrirConexion();
@@ -22,6 +22,7 @@ namespace Bicistock.Data.Data.Repositories
             return tabla;
         }
 
+        //Create a bike 
         public void MeterBici(string name, int brandId, string image, string description)
         {
             comando.Connection = conexion.AbrirConexion();
@@ -35,6 +36,7 @@ namespace Bicistock.Data.Data.Repositories
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }
+        //Gets a list of bikes with its brand
 
         public DataTable BiciMarca()
         {

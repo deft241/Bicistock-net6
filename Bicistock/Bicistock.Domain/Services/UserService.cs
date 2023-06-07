@@ -7,6 +7,7 @@ namespace Bicistock.Domain.Services
 {
     public class UserService
     {
+        //Show an User
         public User MostrarUsuario(string UserName)
         {
             Logger.Logger logger = new Logger.Logger();
@@ -32,7 +33,7 @@ namespace Bicistock.Domain.Services
             }
 
         }
-
+        //Show all Users
         public List<User> MostrarUsuarios()
         {
             UserRepository accesoBD = new UserRepository();
@@ -47,6 +48,7 @@ namespace Bicistock.Domain.Services
             return UserList;
         }
 
+        //Creates a new User
         public void CrearUsuario(string username, string password, string Dni, string name, string surnames, int age,
             string phone, string verified, byte idPermission, string email)
         {
@@ -68,7 +70,7 @@ namespace Bicistock.Domain.Services
             accesoBD.Insertar(username, password, Dni, name, surnames, age, phone, verified, idPermission, email);
         }
 
-
+        //Activate an User
         public void ActivateUser(string username)
         {
             UserRepository accesoBD = new UserRepository();
@@ -76,7 +78,7 @@ namespace Bicistock.Domain.Services
             accesoBD.ActivateUser(username);
         }
 
-
+        //Check if login was succesfull
         public bool LoginValidator(string username, string password)
         {
             //Check any null parameter
@@ -103,6 +105,7 @@ namespace Bicistock.Domain.Services
             }
         }
 
+        //Modify data of an User
         public bool ModifyUser(User newUserData, string userName)
         {
             UserRepository userRepository = new UserRepository();
